@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1</Version>
+    <Authors>Turtle Computing</Authors>
+    <Company>Turtle Computing</Company>
+    <Product>StockQuoteSource.Contracts</Product>
+  </PropertyGroup>
+
+</Project>
