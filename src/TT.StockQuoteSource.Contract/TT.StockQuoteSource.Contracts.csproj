@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1</Version>
+    <Authors>Turtle Computing</Authors>
+    <Company>Turtle Computing</Company>
+    <Product>StockQuoteSource.Contracts</Product>
+    <AssemblyName>TT.StockQuoteSource.Contracts</AssemblyName>
+    <RootNamespace>TT.StockQuoteSource.Contracts</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\out\bin\Debug\netstandard2.0\</OutputPath>
+    <DocumentationFile>..\..\out\bin\Debug\netstandard2.0\TT.StockQuoteSource.Contracts.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
