@@ -1,0 +1,16 @@
+version: 0.1.{build}
+image: Visual Studio 2017
+configuration: Release
+platform: Any CPU
+build_script:
+- cmd: build.cmd
+test_script:
+- cmd: runtest.cmd
+notifications:
+- provider: Email
+  to:
+  - bruceyclee@gmail.com
+  subject: TT.StockQuoteSource build status
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: false
