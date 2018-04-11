@@ -9,4 +9,4 @@ rem restore package
 %turtleTools%\NuGet.exe restore
 
 rem msbuild - .Net Core SDK is required on local machine
-dotnet build
+dotnet build -c Release

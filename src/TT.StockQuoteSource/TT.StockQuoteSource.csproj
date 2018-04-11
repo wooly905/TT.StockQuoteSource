@@ -21,6 +21,11 @@
     <DocumentationFile>..\..\out\bin\Debug\netstandard2.0\TTStockQuoteSource.xml</DocumentationFile>
   </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\out\bin\Release\netstandard2.0\</OutputPath>
+    <DocumentationFile>..\..\out\bin\Release\netstandard2.0\TTStockQuoteSource.xml</DocumentationFile>
+  </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
