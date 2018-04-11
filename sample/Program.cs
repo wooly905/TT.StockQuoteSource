@@ -13,17 +13,27 @@ namespace SampleApp
         private static IConfiguration _config;
         private static Country _country;
 
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             _country = Country.USA;
             _config = GetConfiguration();
             _provider = new StockQuoteSourceProvider(_config, _country);
 
-            Console.WriteLine("Yahoo Finance:");
-            await RunYahooSource();
+            Task t1 = Task.Run(() =>
+            {
+                Console.WriteLine("Yahoo Finance:");
+                RunYahooSource();
+            });
 
-            Console.WriteLine("Alpha Vantage Finance:");
-            await RunAlphaVantageSource();
+            t1.Wait();
+
+            Task t2 = Task.Run(() =>
+            {
+                Console.WriteLine("Alpha Vantage Finance:");
+                RunAlphaVantageSource();
+            });
+
+            t2.Wait();
 
             Console.WriteLine("Press any key to exit...");
             Console.Read();
