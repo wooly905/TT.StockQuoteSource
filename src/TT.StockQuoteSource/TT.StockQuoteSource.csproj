@@ -7,13 +7,14 @@
     <Authors>Turtle Computing</Authors>
     <Company>Turtle Computing</Company>
     <Product>Stock Quote Source</Product>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
     <PackageId>TT.StockQuoteSource</PackageId>
     <Description>Stock quote retriever.</Description>
     <PackageTags>stockquote;quote source;</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <AssemblyName>TT.StockQuoteSource</AssemblyName>
     <RootNamespace>TT.StockQuoteSource</RootNamespace>
+    <AssemblyOriginatorKeyFile>..\..\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
