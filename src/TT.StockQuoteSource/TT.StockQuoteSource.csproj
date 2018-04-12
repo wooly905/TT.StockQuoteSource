@@ -3,18 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1</Version>
+    <Version>0.1.0.0</Version>
     <Authors>Turtle Computing</Authors>
     <Company>Turtle Computing</Company>
-    <Product>Stock Quote Source</Product>
+    <Product>TT.StockQuoteSource</Product>
     <SignAssembly>true</SignAssembly>
     <PackageId>TT.StockQuoteSource</PackageId>
     <Description>Stock quote retriever.</Description>
     <PackageTags>stockquote;quote source;</PackageTags>
-    <NeutralLanguage>en-US</NeutralLanguage>
+    <NeutralLanguage></NeutralLanguage>
     <AssemblyName>TT.StockQuoteSource</AssemblyName>
     <RootNamespace>TT.StockQuoteSource</RootNamespace>
     <AssemblyOriginatorKeyFile>..\..\key.snk</AssemblyOriginatorKeyFile>
+    <PackageLicenseUrl>https://github.com/Yihcheng/TT.StockQuoteSource/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Yihcheng/TT.StockQuoteSource</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Yihcheng/TT.StockQuoteSource</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

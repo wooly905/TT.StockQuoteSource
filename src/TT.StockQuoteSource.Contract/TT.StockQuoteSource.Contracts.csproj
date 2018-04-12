@@ -3,14 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1</Version>
+    <Version>0.1.0.0</Version>
     <Authors>Turtle Computing</Authors>
     <Company>Turtle Computing</Company>
-    <Product>StockQuoteSource.Contracts</Product>
+    <Product>TT.StockQuoteSource.Contracts</Product>
     <AssemblyName>TT.StockQuoteSource.Contracts</AssemblyName>
     <RootNamespace>TT.StockQuoteSource.Contracts</RootNamespace>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\key.snk</AssemblyOriginatorKeyFile>
+    <PackageLicenseUrl>https://github.com/Yihcheng/TT.StockQuoteSource/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Yihcheng/TT.StockQuoteSource</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Yihcheng/TT.StockQuoteSource</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
