@@ -9,6 +9,8 @@
     <Product>StockQuoteSource.Contracts</Product>
     <AssemblyName>TT.StockQuoteSource.Contracts</AssemblyName>
     <RootNamespace>TT.StockQuoteSource.Contracts</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
