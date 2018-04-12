@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.0.0</Version>
-    <Authors>Turtle Computing</Authors>
-    <Company>Turtle Computing</Company>
+    <Authors>Yih-Cheng Lee</Authors>
+    <Company>Yih-Cheng Lee</Company>
     <Product>TT.StockQuoteSource.Contracts</Product>
     <AssemblyName>TT.StockQuoteSource.Contracts</AssemblyName>
     <RootNamespace>TT.StockQuoteSource.Contracts</RootNamespace>
@@ -14,6 +14,7 @@
     <PackageLicenseUrl>https://github.com/Yihcheng/TT.StockQuoteSource/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Yihcheng/TT.StockQuoteSource</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Yihcheng/TT.StockQuoteSource</RepositoryUrl>
+    <Description>This is a contract for TT.StockQuoteSource</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
