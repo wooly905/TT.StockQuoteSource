@@ -1,4 +1,5 @@
 @echo off
+dotnet --version
 
 dotnet restore --packages .\packages
 
