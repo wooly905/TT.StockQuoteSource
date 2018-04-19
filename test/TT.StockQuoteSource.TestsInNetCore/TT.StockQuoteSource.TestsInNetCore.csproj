@@ -6,6 +6,16 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\out\bin\Test\</OutputPath>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\out\bin\Test\</OutputPath>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="TestFiles\AlphaVantage-HDV-1day-FullOutput.txt" />
     <None Remove="TestFiles\AlphaVantage-HDV-1day.txt" />
