@@ -104,7 +104,7 @@ namespace TT.StockQuoteSource.Tests
             AlphaVantageDataSource source = new AlphaVantageDataSource(config, operations, parser);
             IReadOnlyList<IStockQuoteFromDataSource> quotes = source.GetHistoricalQuotesAsync(country, stockId, start, end, WriteToErrorLogAction).Result;
 
-            Assert.Equal(206, quotes.Count);
+            Assert.Equal(207, quotes.Count);
 
             foreach (IStockQuoteFromDataSource quote in quotes)
             {

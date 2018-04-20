@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\out\bin\Test\</OutputPath>
+    <OutputPath></OutputPath>
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\out\bin\Test\</OutputPath>
+    <OutputPath></OutputPath>
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
