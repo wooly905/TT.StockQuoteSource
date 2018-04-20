@@ -5,8 +5,19 @@
     /// </summary>
     public enum Country
     {
-        Test = 0,
-        Taiwan = 1,
-        USA = 2
+        /// <summary>
+        /// For testing
+        /// </summary>
+        Test = -1,
+
+        /// <summary>
+        /// Taiwan
+        /// </summary>
+        Taiwan = 0,
+        
+        /// <summary>
+        /// USA
+        /// </summary>
+        USA = 1
     }
 }
