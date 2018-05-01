@@ -4,5 +4,5 @@
   "AlphaVantageRealTimeUrl": "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={0}&interval=5min&apikey={1}",
   "AlphaVantageDailyUrl": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={0}&apikey={1}",
   "AlphaVantageDailyFullOutputUrl": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={0}&apikey={1}&outputsize=full",
-  "AlphaVantageKey": "{please-appy-your-own-key-at-alphavantage-website}"
+  "AlphaVantageKey": "{please-apply-your-own-key-at-https://www.alphavantage.co/}"
 }

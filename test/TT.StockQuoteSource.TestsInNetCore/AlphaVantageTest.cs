@@ -47,71 +47,6 @@ namespace TT.StockQuoteSource.Tests
             }
         }
 
-        // test with Internet enabled
-        [Fact]
-        public void DataSourceRealTimeWithInternetPriceTest()
-        {
-            Country country = Country.USA;
-            IConfiguration config = TestServiceProvider.GetTestConfiguration();
-            string stockId = "HDV";
-            IStockQuoteDataSourceOperations operations = new StockQuoteDataSourceOperations();
-            IStockQuoteParser parser = new AlphaVantageParser();
-            AlphaVantageDataSource source = new AlphaVantageDataSource(config, operations, parser);
-
-            IStockQuoteFromDataSource quote = source.GetMostRecentQuoteAsync(country, stockId, WriteToErrorLogAction).Result;
-
-            Assert.True(quote.IsValid);
-        }
-
-        // test with Internet enabled
-        [Fact]
-        public void DataSourceDailyNormalOutputWithInternetTest()
-        {
-            Country country = Country.USA;
-            IConfiguration config = TestServiceProvider.GetTestConfiguration();
-            string stockId = "HDV";
-
-            DateTime start = DateTime.Now.AddDays(-30);
-            DateTime end = DateTime.Now.AddDays(-15);
-
-            IStockQuoteDataSourceOperations operations = new StockQuoteDataSourceOperations();
-            IStockQuoteParser parser = new AlphaVantageParser();
-            AlphaVantageDataSource source = new AlphaVantageDataSource(config, operations, parser);
-
-            IReadOnlyList<IStockQuoteFromDataSource> quotes = source.GetHistoricalQuotesAsync(country, stockId, start, end, WriteToErrorLogAction).Result;
-
-            Assert.True(quotes.Count > 5);
-
-            foreach (IStockQuoteFromDataSource quote in quotes)
-            {
-                Assert.True(quote.IsValid);
-            }
-        }
-
-        // test with Internet enabled
-        [Fact]
-        public void DataSourceDailyFullOutputWithInternetTest()
-        {
-            Country country = Country.USA;
-            IConfiguration config = TestServiceProvider.GetTestConfiguration();
-            string stockId = "HDV";
-
-            DateTime start = DateTime.Now.AddDays(-600);
-            DateTime end = DateTime.Now.AddDays(-300);
-
-            IStockQuoteDataSourceOperations operations = new StockQuoteDataSourceOperations();
-            IStockQuoteParser parser = new AlphaVantageParser();
-            AlphaVantageDataSource source = new AlphaVantageDataSource(config, operations, parser);
-            IReadOnlyList<IStockQuoteFromDataSource> quotes = source.GetHistoricalQuotesAsync(country, stockId, start, end, WriteToErrorLogAction).Result;
-
-            Assert.Equal(207, quotes.Count);
-
-            foreach (IStockQuoteFromDataSource quote in quotes)
-            {
-                Assert.True(quote.IsValid);
-            }
-        }
-
         [Fact]
         public void ParseSingleQuoteTest()
         {
@@ -172,6 +107,70 @@ namespace TT.StockQuoteSource.Tests
 
             Assert.Null(quotes);
             Assert.True(_isWriteToErrorLogActionRan);
+        }
+
+        [Fact(Skip = "This is an option test with Internet enabled. Please apply your own api key to test")]
+        public void DataSourceRealTimeWithInternetPriceTest()
+        {
+            Country country = Country.USA;
+            IConfiguration config = TestServiceProvider.GetTestConfiguration();
+            string stockId = "HDV";
+            IStockQuoteDataSourceOperations operations = new StockQuoteDataSourceOperations();
+            IStockQuoteParser parser = new AlphaVantageParser();
+            AlphaVantageDataSource source = new AlphaVantageDataSource(config, operations, parser);
+
+            IStockQuoteFromDataSource quote = source.GetMostRecentQuoteAsync(country, stockId, WriteToErrorLogAction).Result;
+
+            Assert.True(quote.IsValid);
+        }
+
+        // test with Internet enabled
+        [Fact(Skip = "This is an option test with Internet enabled. Please apply your own api key to test")]
+        public void DataSourceDailyNormalOutputWithInternetTest()
+        {
+            Country country = Country.USA;
+            IConfiguration config = TestServiceProvider.GetTestConfiguration();
+            string stockId = "HDV";
+
+            DateTime start = DateTime.Now.AddDays(-30);
+            DateTime end = DateTime.Now.AddDays(-15);
+
+            IStockQuoteDataSourceOperations operations = new StockQuoteDataSourceOperations();
+            IStockQuoteParser parser = new AlphaVantageParser();
+            AlphaVantageDataSource source = new AlphaVantageDataSource(config, operations, parser);
+
+            IReadOnlyList<IStockQuoteFromDataSource> quotes = source.GetHistoricalQuotesAsync(country, stockId, start, end, WriteToErrorLogAction).Result;
+
+            Assert.True(quotes.Count > 5);
+
+            foreach (IStockQuoteFromDataSource quote in quotes)
+            {
+                Assert.True(quote.IsValid);
+            }
+        }
+
+        // test with Internet enabled
+        [Fact(Skip = "This is an option test with Internet enabled. Please apply your own api key to test")]
+        public void DataSourceDailyFullOutputWithInternetTest()
+        {
+            Country country = Country.USA;
+            IConfiguration config = TestServiceProvider.GetTestConfiguration();
+            string stockId = "HDV";
+
+            DateTime start = DateTime.Now.AddDays(-600);
+            DateTime end = DateTime.Now.AddDays(-300);
+
+            IStockQuoteDataSourceOperations operations = new StockQuoteDataSourceOperations();
+            IStockQuoteParser parser = new AlphaVantageParser();
+            AlphaVantageDataSource source = new AlphaVantageDataSource(config, operations, parser);
+            IReadOnlyList<IStockQuoteFromDataSource> quotes = source.GetHistoricalQuotesAsync(country, stockId, start, end, WriteToErrorLogAction).Result;
+
+            Assert.Equal(207, quotes.Count);
+
+            foreach (IStockQuoteFromDataSource quote in quotes)
+            {
+                Assert.True(quote.IsValid);
+            }
         }
     }
 }

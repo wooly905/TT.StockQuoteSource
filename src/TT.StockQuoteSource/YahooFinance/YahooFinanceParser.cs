@@ -109,7 +109,7 @@ namespace TT.StockQuoteSource.YahooFinance
                 }
 
                 int unixTimeStamp = marketTimeToken.Value<int>();
-                tradeDateTime = new DateTime(1970, 1, 1).AddSeconds(unixTimeStamp);
+                tradeDateTime = new DateTime(1970, 1, 1).AddSeconds(unixTimeStamp).ToCountryLocalTime(country);
             }
             catch (Exception ex)
             {

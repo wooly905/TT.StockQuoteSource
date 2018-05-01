@@ -29,7 +29,20 @@ namespace TT.StockQuoteSource.Tests
 
             IStockQuoteFromDataSource quote = parser.ParseSingleQuote(country, stockId, htmlContent, WriteToErrorLogAction);
 
+            Assert.NotNull(quote);
             Assert.True(quote.IsValid);
+            Assert.Equal(14.63m, quote.ClosePrice);
+            Assert.Equal(15.0686m, quote.HighPrice);
+            Assert.Equal(14.611m, quote.LowPrice);
+            Assert.Equal(14.79m, quote.OpenPrice);
+            Assert.Equal(67165, quote.Volume);
+            Assert.Equal(stockId, quote.StockId);
+            Assert.Equal(country, quote.Country);
+            Assert.Equal(2018, quote.TradeDateTime.Year);
+            Assert.Equal(3, quote.TradeDateTime.Month);
+            Assert.Equal(2, quote.TradeDateTime.Day);
+            Assert.Equal(15, quote.TradeDateTime.Hour);
+            Assert.Equal(59, quote.TradeDateTime.Minute);
         }
 
         [Fact]
@@ -50,7 +63,7 @@ namespace TT.StockQuoteSource.Tests
         }
 
         // run with Internet enabled
-        [Fact]
+        [Fact(Skip ="This is an option test with Internet enabled")]
         public void DataSourceUsaSingleResultTest()
         {
             Country country = Country.USA;
@@ -59,7 +72,7 @@ namespace TT.StockQuoteSource.Tests
         }
 
         // run with Internet enabled
-        [Fact]
+        [Fact(Skip = "This is an option test with Internet enabled")]
         public void DataSourceTaiwanSingleResultTest()
         {
             Country country = Country.Taiwan;
@@ -82,7 +95,7 @@ namespace TT.StockQuoteSource.Tests
         }
 
         // run with Internet enabled
-        [Fact]
+        [Fact(Skip = "This is an option test with Internet enabled")]
         public void DataSourceMultipleResultUsaDataTest()
         {
             Country country = Country.USA;
@@ -91,7 +104,7 @@ namespace TT.StockQuoteSource.Tests
         }
 
         // run with Internet enabled
-        [Fact]
+        [Fact(Skip = "This is an option test with Internet enabled")]
         public void DataSourceMultipleResultTaiwanDataTest()
         {
             Country country = Country.Taiwan;
