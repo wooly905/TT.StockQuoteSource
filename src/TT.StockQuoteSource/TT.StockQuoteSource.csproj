@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0.0</Version>
+    <Version>0.1.1.0</Version>
     <Authors>Yih-Cheng Lee</Authors>
     <Company>Yih-Cheng Lee</Company>
     <Product>TT.StockQuoteSource</Product>
     <SignAssembly>true</SignAssembly>
     <PackageId>TT.StockQuoteSource</PackageId>
     <Description>This is a small open source project which helps you easily get real-time and historical stock quotes programmatically.</Description>
-    <PackageTags>stockquote;quote source;</PackageTags>
+    <PackageTags>stock quote; stock source;</PackageTags>
     <NeutralLanguage></NeutralLanguage>
     <AssemblyName>TT.StockQuoteSource</AssemblyName>
     <RootNamespace>TT.StockQuoteSource</RootNamespace>
