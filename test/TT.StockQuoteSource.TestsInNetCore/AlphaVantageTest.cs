@@ -19,19 +19,10 @@ namespace TT.StockQuoteSource.Tests
             _isWriteToErrorLogActionRan = true;
         }
 
-        [Fact]
-        public void DataSourceDailyOutputTest()
-        {
-            DataSourceDailyOutputInternal(Av1DayJsonFile);
-        }
-
-        [Fact]
-        public void DataSourceDailyFullOutputTest()
-        {
-            DataSourceDailyOutputInternal(Av1DayFullOutputJsonFile);
-        }
-
-        private void DataSourceDailyOutputInternal(string jsonFile)
+        [Theory]
+        [InlineData(Av1DayJsonFile)]
+        [InlineData(Av1DayFullOutputJsonFile)]
+        public void ParseMultiQuotesTest(string jsonFile)
         {
             Country country = Country.USA;
             string stockId = "HDV";
@@ -75,24 +66,6 @@ namespace TT.StockQuoteSource.Tests
 
             Assert.Null(quote);
             Assert.True(_isWriteToErrorLogActionRan);
-        }
-
-        [Fact]
-        public void ParseMultiQuotesTest()
-        {
-            Country country = Country.USA;
-            string stockId = "HDV";
-
-            AlphaVantageParser parser = new AlphaVantageParser();
-            string jsonContent = TestUtilities.ReadTestFile(Av1DayFullOutputJsonFile);
-            IReadOnlyList<IStockQuoteFromDataSource> quotes = parser.ParseMultiQuotes(country, stockId, jsonContent, WriteToErrorLogAction);
-
-            Assert.NotNull(quotes);
-            Assert.True(quotes.Count > 0);
-            foreach (IStockQuoteFromDataSource quote in quotes)
-            {
-                Assert.True(quote.IsValid);
-            }
         }
 
         [Fact]

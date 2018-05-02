@@ -62,29 +62,14 @@ namespace TT.StockQuoteSource.Tests
             }
         }
 
-        // run with Internet enabled
-        [Fact(Skip ="This is an option test with Internet enabled")]
-        public void DataSourceUsaSingleResultTest()
-        {
-            Country country = Country.USA;
-            string stockId = "HDV";
-            DataSourceUsaSingleResultInternal(country, stockId);
-        }
-
-        // run with Internet enabled
-        [Fact(Skip = "This is an option test with Internet enabled")]
-        public void DataSourceTaiwanSingleResultTest()
-        {
-            Country country = Country.Taiwan;
-            string stockId = "0056";
-            DataSourceUsaSingleResultInternal(country, stockId);
-        }
-
-        private void DataSourceUsaSingleResultInternal(Country country, string stockId)
+        [Theory]
+        [InlineData(Country.USA, "HDV")]
+        [InlineData(Country.Taiwan, "0050")]
+        public void GetMostRecentQuoteTest(Country country, string stockId)
         {
             IConfiguration config = TestServiceProvider.GetTestConfiguration();
             IStockQuoteProvider provider = new StockQuoteSourceProvider(config, country);
-            IStockQuoteDataSource yahooSource = provider.GetStockDataSources().FirstOrDefault(a => a.Source == StockQuoteSource.Contracts.StockQuoteSource.Yahoo);
+            IStockQuoteDataSource yahooSource = provider.GetStockDataSources().FirstOrDefault(a => a.Source == Contracts.StockQuoteSource.Yahoo);
 
             Assert.NotNull(yahooSource);
 
@@ -94,29 +79,14 @@ namespace TT.StockQuoteSource.Tests
             Assert.True(result.IsValid);
         }
 
-        // run with Internet enabled
-        [Fact(Skip = "This is an option test with Internet enabled")]
-        public void DataSourceMultipleResultUsaDataTest()
-        {
-            Country country = Country.USA;
-            string stockId = "HDV";
-            DataSourceMultipleResultInternal(country, stockId);
-        }
-
-        // run with Internet enabled
-        [Fact(Skip = "This is an option test with Internet enabled")]
-        public void DataSourceMultipleResultTaiwanDataTest()
-        {
-            Country country = Country.Taiwan;
-            string stockId = "2002";
-            DataSourceMultipleResultInternal(country, stockId);
-        }
-
-        private void DataSourceMultipleResultInternal(Country country, string stockId)
+        [Theory]
+        [InlineData(Country.USA, "HDV")]
+        [InlineData(Country.Taiwan, "0050")]
+        public void GetHistoricalQuotesTest(Country country, string stockId)
         {
             IConfiguration config = TestServiceProvider.GetTestConfiguration();
             IStockQuoteProvider provider = new StockQuoteSourceProvider(config, country);
-            IStockQuoteDataSource yahooSource = provider.GetStockDataSources().FirstOrDefault(a => a.Source == StockQuoteSource.Contracts.StockQuoteSource.Yahoo);
+            IStockQuoteDataSource yahooSource = provider.GetStockDataSources().FirstOrDefault(a => a.Source == Contracts.StockQuoteSource.Yahoo);
 
             Assert.NotNull(yahooSource);
 
