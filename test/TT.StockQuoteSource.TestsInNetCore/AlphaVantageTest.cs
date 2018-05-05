@@ -20,31 +20,18 @@ namespace TT.StockQuoteSource.Tests
         }
 
         [Fact]
-        public void DataSourceDailyOutputTest()
-        {
-            DataSourceDailyOutputInternal(Av1DayJsonFile);
-        }
-
-        [Fact]
-        public void DataSourceDailyFullOutputTest()
-        {
-            DataSourceDailyOutputInternal(Av1DayFullOutputJsonFile);
-        }
-
-        private void DataSourceDailyOutputInternal(string jsonFile)
+        public void ParseSingleQuoteEmptyInputTest()
         {
             Country country = Country.USA;
             string stockId = "HDV";
-            IStockQuoteParser parser = new AlphaVantageParser();
-            string jsonContent = TestUtilities.ReadTestFile(jsonFile);
 
-            IReadOnlyList<IStockQuoteFromDataSource> quotes = parser.ParseMultiQuotes(country, stockId, jsonContent, WriteToErrorLogAction);
+            AlphaVantageParser parser = new AlphaVantageParser();
+            _isWriteToErrorLogActionRan = false;
 
-            Assert.NotNull(quotes);
-            foreach (IStockQuoteFromDataSource quote in quotes)
-            {
-                Assert.True(quote.IsValid);
-            }
+            IStockQuoteFromDataSource quote = parser.ParseSingleQuote(country, stockId, null, WriteToErrorLogAction);
+
+            Assert.Null(quote);
+            Assert.True(_isWriteToErrorLogActionRan);
         }
 
         [Fact]
@@ -63,39 +50,6 @@ namespace TT.StockQuoteSource.Tests
         }
 
         [Fact]
-        public void ParseSingleQuoteEmptyInputTest()
-        {
-            Country country = Country.USA;
-            string stockId = "HDV";
-
-            AlphaVantageParser parser = new AlphaVantageParser();
-            _isWriteToErrorLogActionRan = false;
-
-            IStockQuoteFromDataSource quote = parser.ParseSingleQuote(country, stockId, null, WriteToErrorLogAction);
-
-            Assert.Null(quote);
-            Assert.True(_isWriteToErrorLogActionRan);
-        }
-
-        [Fact]
-        public void ParseMultiQuotesTest()
-        {
-            Country country = Country.USA;
-            string stockId = "HDV";
-
-            AlphaVantageParser parser = new AlphaVantageParser();
-            string jsonContent = TestUtilities.ReadTestFile(Av1DayFullOutputJsonFile);
-            IReadOnlyList<IStockQuoteFromDataSource> quotes = parser.ParseMultiQuotes(country, stockId, jsonContent, WriteToErrorLogAction);
-
-            Assert.NotNull(quotes);
-            Assert.True(quotes.Count > 0);
-            foreach (IStockQuoteFromDataSource quote in quotes)
-            {
-                Assert.True(quote.IsValid);
-            }
-        }
-
-        [Fact]
         public void ParseMultiQuotesEmptyInputTest()
         {
             Country country = Country.USA;
@@ -109,28 +63,46 @@ namespace TT.StockQuoteSource.Tests
             Assert.True(_isWriteToErrorLogActionRan);
         }
 
-        [Fact(Skip = "This is an option test with Internet enabled. Please apply your own api key to test")]
-        public void DataSourceRealTimeWithInternetPriceTest()
+        [Theory]
+        [InlineData(Av1DayJsonFile)]
+        [InlineData(Av1DayFullOutputJsonFile)]
+        public void ParseMultiQuotesTest(string jsonFile)
         {
             Country country = Country.USA;
-            IConfiguration config = TestServiceProvider.GetTestConfiguration();
             string stockId = "HDV";
+            IStockQuoteParser parser = new AlphaVantageParser();
+            string jsonContent = TestUtilities.ReadTestFile(jsonFile);
+
+            IReadOnlyList<IStockQuoteFromDataSource> quotes = parser.ParseMultiQuotes(country, stockId, jsonContent, WriteToErrorLogAction);
+
+            Assert.NotNull(quotes);
+            foreach (IStockQuoteFromDataSource quote in quotes)
+            {
+                Assert.True(quote.IsValid);
+            }
+        }
+
+        [Theory(Skip = "Need to apply api to run this unit test")]
+        [InlineData(Country.USA, "HDV")]
+        public void DataSourceRealTimeWithInternetPriceTest(Country country, string stockId)
+        {
+            IConfiguration config = TestServiceProvider.GetTestConfiguration();
             IStockQuoteDataSourceOperations operations = new StockQuoteDataSourceOperations();
             IStockQuoteParser parser = new AlphaVantageParser();
             AlphaVantageDataSource source = new AlphaVantageDataSource(config, operations, parser);
 
             IStockQuoteFromDataSource quote = source.GetMostRecentQuoteAsync(country, stockId, WriteToErrorLogAction).Result;
 
+            Assert.NotNull(quote);
             Assert.True(quote.IsValid);
         }
 
-        // test with Internet enabled
-        [Fact(Skip = "This is an option test with Internet enabled. Please apply your own api key to test")]
-        public void DataSourceDailyNormalOutputWithInternetTest()
+        [Theory(Skip = "Need to apply api to run this unit test")]
+        [InlineData(Country.USA, "HDV")]
+        [InlineData(Country.Taiwan, "0050")]
+        public void DataSourceDailyNormalOutputWithInternetTest(Country country, string stockId)
         {
-            Country country = Country.USA;
             IConfiguration config = TestServiceProvider.GetTestConfiguration();
-            string stockId = "HDV";
 
             DateTime start = DateTime.Now.AddDays(-30);
             DateTime end = DateTime.Now.AddDays(-15);
@@ -141,6 +113,7 @@ namespace TT.StockQuoteSource.Tests
 
             IReadOnlyList<IStockQuoteFromDataSource> quotes = source.GetHistoricalQuotesAsync(country, stockId, start, end, WriteToErrorLogAction).Result;
 
+            Assert.NotNull(quotes);
             Assert.True(quotes.Count > 5);
 
             foreach (IStockQuoteFromDataSource quote in quotes)
@@ -149,13 +122,11 @@ namespace TT.StockQuoteSource.Tests
             }
         }
 
-        // test with Internet enabled
-        [Fact(Skip = "This is an option test with Internet enabled. Please apply your own api key to test")]
-        public void DataSourceDailyFullOutputWithInternetTest()
+        [Theory(Skip ="Need to apply api to run this unit test")]
+        [InlineData(Country.USA, "HDV")]
+        public void DataSourceDailyFullOutputWithInternetTest(Country country, string stockId)
         {
-            Country country = Country.USA;
             IConfiguration config = TestServiceProvider.GetTestConfiguration();
-            string stockId = "HDV";
 
             DateTime start = DateTime.Now.AddDays(-600);
             DateTime end = DateTime.Now.AddDays(-300);
@@ -165,7 +136,8 @@ namespace TT.StockQuoteSource.Tests
             AlphaVantageDataSource source = new AlphaVantageDataSource(config, operations, parser);
             IReadOnlyList<IStockQuoteFromDataSource> quotes = source.GetHistoricalQuotesAsync(country, stockId, start, end, WriteToErrorLogAction).Result;
 
-            Assert.Equal(207, quotes.Count);
+            Assert.NotNull(quotes);
+            Assert.True(quotes.Count >= 206);
 
             foreach (IStockQuoteFromDataSource quote in quotes)
             {
