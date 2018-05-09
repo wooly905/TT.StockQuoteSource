@@ -65,6 +65,7 @@ namespace TT.StockQuoteSource.Tests
         [Theory]
         [InlineData(Country.USA, "HDV")]
         [InlineData(Country.Taiwan, "0050")]
+        [InlineData(Country.HK, "0388")]
         public void GetMostRecentQuoteTest(Country country, string stockId)
         {
             IConfiguration config = TestServiceProvider.GetTestConfiguration();
@@ -82,6 +83,7 @@ namespace TT.StockQuoteSource.Tests
         [Theory]
         [InlineData(Country.USA, "HDV")]
         [InlineData(Country.Taiwan, "0050")]
+        [InlineData(Country.HK, "0388")]
         public void GetHistoricalQuotesTest(Country country, string stockId)
         {
             IConfiguration config = TestServiceProvider.GetTestConfiguration();
