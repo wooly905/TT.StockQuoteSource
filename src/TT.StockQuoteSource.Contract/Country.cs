@@ -14,10 +14,15 @@
         /// Taiwan
         /// </summary>
         Taiwan = 0,
-        
+
         /// <summary>
         /// USA
         /// </summary>
-        USA = 1
+        USA = 1,
+
+        /// <summary>
+        /// Hong Kong
+        /// </summary>
+        HK = 2
     }
 }

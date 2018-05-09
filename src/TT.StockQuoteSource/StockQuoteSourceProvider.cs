@@ -52,7 +52,6 @@ namespace TT.StockQuoteSource
                     case Country.Taiwan:
                         // TODO : add later
                         break;
-
                     case Country.USA:
                         IStockQuoteDataSource alphaVantageSource = CreateStockSource(Contracts.StockQuoteSource.AlphaVantage);
 
@@ -62,13 +61,14 @@ namespace TT.StockQuoteSource
                         }
 
                         break;
-
+                    case Country.HK:
+                        // TODO: add later if there exists a better source for HK
+                        break;
                     case Country.Test:
                         // There is no data source for Test
                         break;
-
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        break;
                 }
             }
 

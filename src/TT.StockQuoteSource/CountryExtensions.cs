@@ -16,6 +16,9 @@ namespace TT.StockQuoteSource
                 case Country.USA:
                     result = "US";
                     break;
+                case Country.HK:
+                    result = "HK";
+                    break;
                 default:
                     result = "Unknown";
                     break;
