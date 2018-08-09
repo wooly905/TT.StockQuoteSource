@@ -213,12 +213,10 @@ namespace TT.StockQuoteSource.YahooFinance
                 return null;
             }
 
-            YahooFinanceDataResult yahooResult = new YahooFinanceDataResult(country, stockId, tradeDateTime, lowPrice, highPrice, closePrice, openPrice, volume)
+            return new YahooFinanceDataResult(country, stockId, tradeDateTime, lowPrice, highPrice, closePrice, openPrice, volume)
             {
                 Crumb = crumb
             };
-
-            return yahooResult;
         }
 
         /// <summary>

@@ -71,9 +71,9 @@ namespace TT.StockQuoteSource
         /// <param name="requestUri"></param>
         /// <param name="cookies"></param>
         /// <returns></returns>
-        public async Task<(string, IReadOnlyList<Cookie>)> GetHttpContentAsync(string requestUri, IReadOnlyList<Cookie> cookies = null)
+        public Task<(string, IReadOnlyList<Cookie>)> GetHttpContentAsync(string requestUri, IReadOnlyList<Cookie> cookies = null)
         {
-            return await Operations.GetHttpContentAsync(requestUri, cookies).ConfigureAwait(false);
+            return Operations.GetHttpContentAsync(requestUri, cookies);
         }
     }
 }

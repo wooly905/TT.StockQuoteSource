@@ -38,9 +38,9 @@ namespace TT.StockQuoteSource.YahooFinance
         {
             string stockFullId = country == Country.USA ? stockId : $"{stockId}.{country.GetShortName()}";
             string yahooUrl = string.Format(Configuration["YahooFinanceURL"], stockFullId);
-            (string htmlContent, IReadOnlyList<Cookie> cookies) response = await GetHttpContentAsync(yahooUrl).ConfigureAwait(false);
+            (string HtmlContent, IReadOnlyList<Cookie> Cookies) response = await GetHttpContentAsync(yahooUrl).ConfigureAwait(false);
 
-            return _parser.ParseSingleQuote(country, stockId, response.htmlContent, writeToErrorLogAction);
+            return _parser.ParseSingleQuote(country, stockId, response.HtmlContent, writeToErrorLogAction);
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace TT.StockQuoteSource.YahooFinance
         {
             string stockFullId = country == Country.USA ? stockId : $"{stockId}.{country.GetShortName()}";
             string yahooSingleQuoteUrl = string.Format(Configuration["YahooFinanceURL"], stockFullId);
-            (string htmlContent, IReadOnlyList<Cookie> cookies) response = await GetHttpContentAsync(yahooSingleQuoteUrl).ConfigureAwait(false);
-            IStockQuoteFromDataSource yahooQuote = _parser.ParseSingleQuote(country, stockId, response.htmlContent, writeToErrorLogAction);
-            IReadOnlyList<Cookie> cookies = response.cookies;
+            (string HtmlContent, IReadOnlyList<Cookie> Cookies) response = await GetHttpContentAsync(yahooSingleQuoteUrl).ConfigureAwait(false);
+            IStockQuoteFromDataSource yahooQuote = _parser.ParseSingleQuote(country, stockId, response.HtmlContent, writeToErrorLogAction);
+            IReadOnlyList<Cookie> cookies = response.Cookies;
 
             if (!(yahooQuote is YahooFinanceDataResult yahooResult) || string.IsNullOrEmpty(yahooResult.Crumb))
             {
@@ -68,9 +68,9 @@ namespace TT.StockQuoteSource.YahooFinance
             string startTimestamp = new DateTime(start.Year, start.Month, start.Day, 0, 0, 0).ToUnixTimestamp();
             string endTimestamp = new DateTime(end.Year, end.Month, end.Day, 23, 59, 59).ToUnixTimestamp();
             string yahooHistoricalUrl = string.Format(Configuration["YahooHistoricalDataUrl"], stockFullId, startTimestamp, endTimestamp, yahooResult.Crumb);
-            (string htmlContent, IReadOnlyList<Cookie> cookies) response2 = await GetHttpContentAsync(yahooHistoricalUrl, cookies).ConfigureAwait(false);
+            (string HtmlContent, IReadOnlyList<Cookie> Cookies) response2 = await GetHttpContentAsync(yahooHistoricalUrl, cookies).ConfigureAwait(false);
 
-            IReadOnlyList<IStockQuoteFromDataSource> quotes = _parser.ParseMultiQuotes(country, stockId, response2.htmlContent, writeToErrorLogAction);
+            IReadOnlyList<IStockQuoteFromDataSource> quotes = _parser.ParseMultiQuotes(country, stockId, response2.HtmlContent, writeToErrorLogAction);
 
             return quotes.Where(a => a.TradeDateTime >= start && a.TradeDateTime <= end).ToList();
         }

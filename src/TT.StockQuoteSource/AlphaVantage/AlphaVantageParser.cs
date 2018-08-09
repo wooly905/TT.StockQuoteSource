@@ -102,7 +102,7 @@ namespace TT.StockQuoteSource.AlphaVantage
                         result.ClosePrice = jpro.Value["4. close"].Value<decimal>();
                     }
                     // accumulate all volumes of a day
-                    result.Volume = result.Volume + jpro.Value["5. volume"].Value<int>();
+                    result.Volume += jpro.Value["5. volume"].Value<int>();
                 }
             }
             catch (Exception ex)
