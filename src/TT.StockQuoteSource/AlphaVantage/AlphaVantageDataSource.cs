@@ -43,9 +43,9 @@ namespace TT.StockQuoteSource.AlphaVantage
             string avUrl = Configuration["AlphaVantageRealTimeUrl"];
             string key = Configuration["AlphaVantageKey"];
             string url = string.Format(avUrl, stockFullId, key);
-            (string jsonContent, IReadOnlyList<Cookie> cookies) response = await GetHttpContentAsync(url).ConfigureAwait(false);
+            (string JsonContent, IReadOnlyList<Cookie> Cookies) response = await GetHttpContentAsync(url).ConfigureAwait(false);
 
-            return _parser.ParseSingleQuote(country, stockId, response.jsonContent, writeToErrorLogAction);
+            return _parser.ParseSingleQuote(country, stockId, response.JsonContent, writeToErrorLogAction);
         }
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace TT.StockQuoteSource.AlphaVantage
             }
 
             string key = Configuration["AlphaVantageKey"];
-            (string jsonContent, IReadOnlyList<Cookie> cookies) response = await GetHttpContentAsync(string.Format(avUrl, stockFullId, key)).ConfigureAwait(false);
+            (string JsonContent, IReadOnlyList<Cookie> Cookies) response = await GetHttpContentAsync(string.Format(avUrl, stockFullId, key)).ConfigureAwait(false);
 
-            IReadOnlyList<IStockQuoteFromDataSource> quotes = _parser.ParseMultiQuotes(country, stockId, response.jsonContent, writeToErrorLogAction);
+            IReadOnlyList<IStockQuoteFromDataSource> quotes = _parser.ParseMultiQuotes(country, stockId, response.JsonContent, writeToErrorLogAction);
 
             return quotes.Where(a => a.TradeDateTime >= start && a.TradeDateTime <= end).ToList();
         }

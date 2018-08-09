@@ -96,6 +96,11 @@ namespace TT.StockQuoteSource
         /// <summary>
         /// Get validality of a stock quote data
         /// </summary>
-        public bool IsValid => LowPrice > 0 && HighPrice > 0 && ClosePrice > 0 && OpenPrice > 0 && Volume >= 0 && !string.IsNullOrEmpty(StockId);
+        public bool IsValid => LowPrice > 0
+                               && HighPrice > 0
+                               && ClosePrice > 0
+                               && OpenPrice > 0
+                               && Volume >= 0
+                               && !string.IsNullOrEmpty(StockId);
     }
 }
